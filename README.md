@@ -14,9 +14,9 @@ Setting up the K8s cluster requires a recent version of terraform (0.7.7 +)
 Besides terraform you need a Scaleway account and export `SCALEWAY_ACCESS_KEY` and `SCALEWAY_ORGANIZATION` to your ENV.
 
 ```
-$ k8stoken=$(python -c 'import random; print "%0x.%0x" % (random.SystemRandom().getrandbits(3*8), random.SystemRandom().getrandbits(8*8))')
-$ terraform plan -var 'k8stoken=$k8stoken'
-$ terraform apply -var 'k8stoken=$k8stoken'
+$ python -c 'import random; print "%0x.%0x" % (random.SystemRandom().getrandbits(3*8), random.SystemRandom().getrandbits(8*8))'
+$ terraform plan -var 'k8stoken=<k8stoken>'
+$ terraform apply -var 'k8stoken=<k8stoken>'
 ```
 
 Terraform will take ~10 minutes to finish. The setup includes the kubernetes-dashboard.
