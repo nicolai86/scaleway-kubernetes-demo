@@ -42,6 +42,7 @@ resource "scaleway_server" "k8s-master" {
 
   provisioner "remote-exec" {
     inline = [
+      "sudo echo ${self.private_ip} > /tmp/private_ip",
       "sudo chmod +x /tmp/master.sh",
       "sudo /tmp/master.sh",
     ]
@@ -80,6 +81,7 @@ resource "scaleway_server" "k8s-worker" {
 
   provisioner "remote-exec" {
     inline = [
+      "sudo echo ${self.private_ip} > /tmp/private_ip",
       "sudo chmod +x /tmp/worker.sh",
       "sudo /tmp/worker.sh",
     ]

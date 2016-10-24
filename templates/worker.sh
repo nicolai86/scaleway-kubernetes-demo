@@ -1,5 +1,12 @@
 #!/bin/bash -v
 
+# modify hostname to allow communication between Scaleway instances.
+private_ip=$(cat /tmp/private_ip)
+hostname $private_ip
+echo $private_ip > /etc/hostname
+echo "127.0.0.1 $private_ip" >> /etc/hosts
+
+# install kubernetes worker
 apt-get install -y apt-transport-https
 
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
